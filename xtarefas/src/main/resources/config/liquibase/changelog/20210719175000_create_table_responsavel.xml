@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20210719175000-01" author="samuel.vasconcelos">
+        <createSequence sequenceName="seq_responsavel" startValue="1" incrementBy="1"/>
+        <createTable tableName="TB_RESPONSAVEL">
+            <column name="id_responsavel" type="bigint" remarks="Numero identificador unico da tabela">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+            <column name="nome" type="VARCHAR(255)" remarks="Nome do responsavel">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="email" type="VARCHAR(255)" remarks="Email do responsavel">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="data_nascimento" type="date" remarks="data de nascimento do responsavel">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
