@@ -1,0 +1,7 @@
+version: '2'
+services:
+  postgresql-xtarefas:
+    extends:
+      file: postgresql.yml
+      service: postgresql
+    container_name: xtarefas-postgresql
