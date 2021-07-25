@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,5 +30,7 @@ public class TarefaDTO implements Serializable {
     private String status;
 
     private Integer responsavel;
+
+    private List<AnexoDTO> anexos = new ArrayList<>();
 
 }
