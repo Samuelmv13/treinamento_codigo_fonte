@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20210719180000-01" author="samuel.vasconcelos">
+        <createSequence sequenceName="seq_tarefa" startValue="1" incrementBy="1"/>
+        <createTable tableName="TB_TAREFA">
+            <column name="id_tarefa" type="bigint" remarks="Numero identificador unico da tabela">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+            <column name="nome" type="VARCHAR(255)" remarks="nome da tarefa">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="data_coclusao" type="date" remarks="data de conclusao da tarefa">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="data_inicio" type="date" remarks="data de inicio da tarefa">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="status" type="VARCHAR(12)" remarks="Status da tarefa">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="id_responsavel" type="bigint" remarks="coluna para responsavel">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20210719180000-02" author="samuel.vasconcelos">
+        <addForeignKeyConstraint baseTableName="TB_TAREFA" baseColumnNames="id_responsavel"
+                                 constraintName="fk_tarefa_responsavel" referencedTableName="TB_RESPONSAVEL"
+                                 referencedColumnNames="id_responsavel"/>
+    </changeSet>
+</databaseChangeLog>
