@@ -32,7 +32,7 @@ public class DocumentResource {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping("/{uuId}")
     public ResponseEntity<DocumentoDTO> obterDocumento(@PathVariable("uuId") String uuId) {
         DocumentoDTO documentoDTO = documentoService.getDocument(uuId);
         return ResponseEntity.ok(documentoDTO);

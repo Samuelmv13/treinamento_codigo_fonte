@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class AnexoService {
 
     private final AnexoRepository repository;
