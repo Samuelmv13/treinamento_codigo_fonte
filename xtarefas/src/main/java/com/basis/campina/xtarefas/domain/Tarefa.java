@@ -50,7 +50,7 @@ public class Tarefa implements Serializable {
     @JoinColumn(name = "id_responsavel")
     private Responsavel responsavel;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_tarefa")
     private List<Anexo> anexos = new ArrayList<>();
 
