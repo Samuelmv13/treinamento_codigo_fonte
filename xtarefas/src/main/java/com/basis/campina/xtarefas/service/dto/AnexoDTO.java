@@ -18,4 +18,6 @@ public class AnexoDTO implements Serializable {
     private String fileName;
 
     private Integer idTarefa;
+
+    private DocumentoDTO documentoDTO;
 }
