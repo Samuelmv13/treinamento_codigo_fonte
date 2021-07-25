@@ -10,3 +10,8 @@ services:
       file: minio.yml
       service: documentos-minio
     container_name: minio
+  elastic-xtarefas:
+    extends:
+      file: elasticsearch.yml
+      service: elasticsearch
+    container_name: elasticsearch-xtarefas

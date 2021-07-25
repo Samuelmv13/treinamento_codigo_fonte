@@ -3,9 +3,11 @@ package com.basis.campina.xtarefas.service;
 import com.basis.campina.xtarefas.domain.Responsavel;
 import com.basis.campina.xtarefas.repository.ResponsavelRepository;
 import com.basis.campina.xtarefas.service.dto.ResponsavelDTO;
+import com.basis.campina.xtarefas.service.event.ResponsavelEvent;
 import com.basis.campina.xtarefas.service.mapper.ResponsavelMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,7 @@ public class ResponsavelService {
 
     private final ResponsavelRepository repository;
     private final ResponsavelMapper responsavelMapper;
+    private final ApplicationEventPublisher eventPublisher;
 
     public List<ResponsavelDTO> listarTodos() {
         return repository.findAll().stream().map(responsavelMapper::toDto).collect(Collectors.toList());
@@ -31,6 +34,7 @@ public class ResponsavelService {
     public ResponsavelDTO salvar(ResponsavelDTO responsavelDTO) {
         Responsavel objeto = responsavelMapper.toEntity(responsavelDTO);
         objeto = repository.save(objeto);
+        eventPublisher.publishEvent(new ResponsavelEvent(objeto.getId()));
         return responsavelMapper.toDto(objeto);
     }
 
