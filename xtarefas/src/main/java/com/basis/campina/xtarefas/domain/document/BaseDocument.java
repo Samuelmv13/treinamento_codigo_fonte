@@ -1,4 +1,4 @@
-package com.basis.campina.xtarefas.domain.elasticsearch;
+package com.basis.campina.xtarefas.domain.document;
 
 import lombok.Getter;
 import lombok.Setter;

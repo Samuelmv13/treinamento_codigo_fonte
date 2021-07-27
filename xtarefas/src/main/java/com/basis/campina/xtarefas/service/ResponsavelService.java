@@ -6,15 +6,12 @@ import com.basis.campina.xtarefas.service.dto.ResponsavelDTO;
 import com.basis.campina.xtarefas.service.event.ResponsavelEvent;
 import com.basis.campina.xtarefas.service.mapper.ResponsavelMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Slf4j
+@Transactional
 @RequiredArgsConstructor
 public class ResponsavelService {
 
@@ -22,24 +19,23 @@ public class ResponsavelService {
     private final ResponsavelMapper responsavelMapper;
     private final ApplicationEventPublisher eventPublisher;
 
-    public List<ResponsavelDTO> listarTodos() {
-        return repository.findAll().stream().map(responsavelMapper::toDto).collect(Collectors.toList());
-    }
-
+    @Transactional(readOnly = true)
     public ResponsavelDTO buscarPorId(Integer id) {
         Responsavel responsavel = repository.findById(id).orElseThrow(()->new RuntimeException("Responsável não encontrado"));
         return responsavelMapper.toDto(responsavel);
     }
 
     public ResponsavelDTO salvar(ResponsavelDTO responsavelDTO) {
-        Responsavel objeto = responsavelMapper.toEntity(responsavelDTO);
-        objeto = repository.save(objeto);
-        eventPublisher.publishEvent(new ResponsavelEvent(objeto.getId()));
+        Responsavel objeto = repository.save(responsavelMapper.toEntity(responsavelDTO));
+        emitirEvento(objeto.getId());
         return responsavelMapper.toDto(objeto);
     }
 
     public void remover(Integer id) {
         buscarPorId(id);
         repository.deleteById(id);
+    }
+    public void emitirEvento(Integer id){
+        eventPublisher.publishEvent(new ResponsavelEvent(id));
     }
 }

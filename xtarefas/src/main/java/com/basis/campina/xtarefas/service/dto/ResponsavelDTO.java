@@ -1,10 +1,13 @@
 package com.basis.campina.xtarefas.service.dto;
 
+import com.basis.campina.xtarefas.domain.Tarefa;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +22,5 @@ public class ResponsavelDTO implements Serializable {
     private String email;
 
     private LocalDate dataNascimento;
+
 }

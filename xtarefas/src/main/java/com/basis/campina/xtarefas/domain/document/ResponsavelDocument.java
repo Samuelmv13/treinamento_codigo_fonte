@@ -1,4 +1,4 @@
-package com.basis.campina.xtarefas.domain.elasticsearch;
+package com.basis.campina.xtarefas.domain.document;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +31,10 @@ public class ResponsavelDocument extends BaseDocument {
             otherFields = {@InnerField(suffix = SORT, type = FieldType.Date, store = true,
                     format = DateFormat.custom, pattern = DATE_PATTERN)})
     private String dataNascimento;
+
+    @MultiField(mainField = @Field(type = FieldType.Text, store = true, analyzer = TRIM_CASE_INSENSITIVE, fielddata = true),
+            otherFields = {@InnerField(suffix = SORT, type = FieldType.Text, store = true, analyzer = TRIM_CASE_INSENSITIVE, fielddata = true)})
+    private String tarefas;
 
     public ResponsavelDocument(Integer id, String nome, String email, LocalDate dataNascimento) {
         this.id = id;

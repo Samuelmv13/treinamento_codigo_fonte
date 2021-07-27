@@ -29,7 +29,7 @@ public class TarefaDTO implements Serializable {
     @NotNull
     private String status;
 
-    private Integer responsavel;
+    private ResponsavelDTO responsavel;
 
     private List<AnexoDTO> anexos = new ArrayList<>();
 
