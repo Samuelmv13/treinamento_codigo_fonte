@@ -1,4 +1,4 @@
-package com.basis.campina.xtarefas.domain.elasticsearch;
+package com.basis.campina.xtarefas.domain.document;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +14,8 @@ import java.io.Serializable;
 @Setter
 @Setting( settingPath = "/config/elastic/config.json")
 public class BaseDocument implements Serializable {
+
+    private static final long serialVersionUID = 9087025562606356055L;
 
     protected static final String TRIM_CASE_INSENSITIVE = "trim_case_insensitive";
     protected static final String SORT = "sort";
