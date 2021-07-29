@@ -51,10 +51,10 @@ public class ResponsavelResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponsavelDTO> atualizar(@PathVariable Integer id, @RequestBody ResponsavelDTO responsavelDTO) {
+    public ResponseEntity<Void> editar(@PathVariable Integer id, @RequestBody ResponsavelDTO responsavelDTO) {
         responsavelDTO.setId(id);
-        ResponsavelDTO dto = responsavelService.salvar(responsavelDTO);
-        return ResponseEntity.ok(dto);
+        responsavelService.editar(responsavelDTO);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")

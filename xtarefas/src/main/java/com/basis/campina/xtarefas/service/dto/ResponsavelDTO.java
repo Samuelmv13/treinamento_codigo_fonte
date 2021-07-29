@@ -1,5 +1,6 @@
 package com.basis.campina.xtarefas.service.dto;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +15,12 @@ public class ResponsavelDTO implements Serializable {
 
     private Integer id;
 
+    @NotNull
     private String nome;
 
+    @NotNull
     private String email;
 
+    @NotNull
     private LocalDate dataNascimento;
 }
