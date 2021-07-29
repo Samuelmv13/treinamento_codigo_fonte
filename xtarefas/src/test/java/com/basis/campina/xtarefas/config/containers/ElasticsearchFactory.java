@@ -1,19 +1,20 @@
 package com.basis.campina.xtarefas.config.containers;
 
-import org.testcontainers.elasticsearch.ElasticsearchContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 import java.util.Objects;
 
 public class ElasticsearchFactory {
 
-    private static ElasticsearchContainer container;
+    @Container
+    private static CustomElasticContainer customElasticContainer;
 
-    public static ElasticsearchContainer getInstance(){
-        if(Objects.isNull(container)){
-            container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.6.2");
-            container.start();
+    public static CustomElasticContainer getInstance(){
+        if(Objects.isNull(customElasticContainer)){
+            customElasticContainer = new CustomElasticContainer();
+            customElasticContainer.start();
         }
-        return container;
+        return customElasticContainer;
     }
 
 }

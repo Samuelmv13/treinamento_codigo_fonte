@@ -1,5 +1,6 @@
 package com.basis.campina.xtarefas.resource;
 
+import com.basis.campina.xtarefas.config.containers.ContainersFactory;
 import com.basis.campina.xtarefas.domain.Responsavel;
 import com.basis.campina.xtarefas.service.dto.ResponsavelDTO;
 import com.basis.campina.xtarefas.service.elastic.ElasticSearchService;
@@ -14,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+import org.testcontainers.junit.jupiter.Container;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -34,6 +36,9 @@ public class ResponsavelResourceIT extends IntTestComum {
 
     @Autowired
     private ElasticSearchService elasticSearchService;
+
+    @Container
+    private static ContainersFactory containersFactory = ContainersFactory.getInstance();
 
     @Test
     @DisplayName("Salvar Responsável com sucesso")

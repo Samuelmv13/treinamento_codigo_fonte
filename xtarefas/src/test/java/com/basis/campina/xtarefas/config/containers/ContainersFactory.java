@@ -1,18 +1,20 @@
 package com.basis.campina.xtarefas.config.containers;
 
-import org.testcontainers.elasticsearch.ElasticsearchContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 import java.util.Objects;
 
 public class ContainersFactory {
 
+    @Container
     private static ContainersFactory containersFactory;
 
-    private static ElasticsearchContainer elasticSearchFactory;
+    @Container
+    private static CustomElasticContainer custom;
 
     public static ContainersFactory getInstance(){
-        if(Objects.isNull(elasticSearchFactory)){
-            elasticSearchFactory = ElasticsearchFactory.getInstance();
+        if(Objects.isNull(custom)){
+            custom = ElasticsearchFactory.getInstance();
         }
         if(Objects.isNull(containersFactory)){
             containersFactory = new ContainersFactory();
