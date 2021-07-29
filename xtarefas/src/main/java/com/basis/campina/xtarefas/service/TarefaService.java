@@ -10,9 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -22,9 +19,6 @@ public class TarefaService {
     private final TarefaMapper tarefaMapper;
     private final ApplicationEventPublisher eventPublisher;
 
-    public List<TarefaDTO> listarTodos() {
-        return repository.findAll().stream().map(tarefaMapper::toDto).collect(Collectors.toList());
-    }
 
     public TarefaDTO buscarPorId(Integer id) {
         Tarefa tarefa = repository.findById(id).orElseThrow(()->new RuntimeException("Tarefa não encontrada"));
